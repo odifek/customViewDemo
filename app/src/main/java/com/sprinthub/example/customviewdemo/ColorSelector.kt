@@ -26,6 +26,7 @@ class ColorSelector @JvmOverloads constructor(
         inflater.inflate(R.layout.color_selector, this)
 
         selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
+        broadcastColor()
 
         colorSelectorArrowLeft.setOnClickListener {
             selectPreviousColor()
@@ -33,6 +34,10 @@ class ColorSelector @JvmOverloads constructor(
 
         colorSelectorArrowRight.setOnClickListener {
             selectNextColor()
+        }
+
+        colorEnabled.setOnCheckedChangeListener { _, _ ->
+            broadcastColor()
         }
 
     }
@@ -44,6 +49,7 @@ class ColorSelector @JvmOverloads constructor(
             selectedColorIndex--
         }
         selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
+        broadcastColor()
     }
 
     private fun selectNextColor() {
@@ -53,6 +59,40 @@ class ColorSelector @JvmOverloads constructor(
             selectedColorIndex++
         }
         selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
+        broadcastColor()
 
+    }
+
+
+    private var colorSelectedListener: ((Int) -> Unit)? = null
+
+    fun setColorSelectListener(selectedListener: (Int) -> Unit) {
+        colorSelectedListener = selectedListener
+    }
+
+    /**
+     * Set the current color of the view
+     */
+    var selectedColorValue: Int = android.R.color.transparent
+        set(value) {
+            var index = listOfColors.indexOf(value)
+            if (index == -1) {
+                colorEnabled.isChecked = false
+                index = 0
+            } else {
+                colorEnabled.isChecked = true
+            }
+            selectedColorIndex = index
+            selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
+
+        }
+
+    private fun broadcastColor() {
+        val color = if (colorEnabled.isChecked) {
+            listOfColors[selectedColorIndex]
+        } else {
+            Color.TRANSPARENT
+        }
+        colorSelectedListener?.invoke(color)
     }
 }

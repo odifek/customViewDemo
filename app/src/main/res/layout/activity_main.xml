@@ -24,4 +24,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/colorSelectorLabel" />
 
+    <View
+        android:id="@+id/colorSwatch"
+        android:layout_width="120dp"
+        android:layout_height="64dp"
+        tools:background="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/colorSelectorLabel"
+        app:layout_constraintBottom_toTopOf="@id/colorSelector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
