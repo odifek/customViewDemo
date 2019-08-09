@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Custom View Demo</string>
+
+    <string-array name="nice_color_array">
+        <item>#EF7676</item>
+        <item>#4945fe</item>
+        <item>#C67812</item>
+        <item>#7890AE</item>
+        <item>#FE12EF</item>
+        <item>#CB78F0</item>
+        <item>#03FE12</item>
+        <item>#23EEE9</item>
+    </string-array>
 </resources>

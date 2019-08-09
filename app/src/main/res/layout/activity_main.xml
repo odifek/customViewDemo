@@ -19,6 +19,7 @@
         android:id="@+id/colorSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:colors="@array/nice_color_array"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
